@@ -1,0 +1,38 @@
+[0m[1mvar.cluster_name[0m
+  Name of the EKS cluster. Also used as a prefix in names of related resources.
+
+  [1mEnter a value:[0m [0m
+[0m[1mvar.subnets[0m
+  A list of subnets to place the EKS cluster and workers within.
+
+  [1mEnter a value:[0m [0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted type constraints are deprecated[0m
+
+[0m  on variables.tf line 18, in variable "vpc_subnets":
+  18: type = [4m"list"[0m
+[0m
+Terraform 0.11 and earlier required type constraints to be given in quotes,
+but that form is now deprecated and will be removed in a future version of
+Terraform. To silence this warning, remove the quotes around "list" and write
+list(string) instead to explicitly indicate that the list elements are
+strings.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mInvalid expression[0m
+
+[0m  on <value for var.subnets> line 1:
+  (source code not available)
+
+Expected the start of an expression, but found an invalid expression token.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mNo value for required variable[0m
+
+[0m  on variables.tf line 229:
+ 229: [4mvariable "subnets"[0m {
+[0m
+The root module input variable "subnets" is not set, and has no default value.
+Use a -var or -var-file command line argument to provide a value for this
+variable.
+[0m[0m
