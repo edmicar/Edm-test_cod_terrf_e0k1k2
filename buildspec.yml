@@ -17,7 +17,6 @@ phases:
   pre_build: # Add kubeconfig to access to EKS cluster
     commands:
       - "mkdir ~/.kube/"
-      - "cp config-$ENV ~/.kube/config"
   build: # Build Docker image and tag it with the commit sha
     commands:
       - docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION -f <PATH_TO_DOCKER_FILE> 
