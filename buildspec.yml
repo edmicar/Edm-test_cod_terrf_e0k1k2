@@ -20,7 +20,7 @@ phases:
   pre_build: # Add kubeconfig to access to EKS cluster
     commands:
       - "mkdir ~/.kube/"
-      - "cp config-dev.yaml ~/.kube/config"        
+      - "cp ./config-dev.yaml ~/.kube/config"        
   build:
     commands:
       - cd "$CODEBUILD_SRC_DIR"
