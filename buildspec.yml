@@ -20,7 +20,9 @@ phases:
   pre_build: # Add kubeconfig to access to EKS cluster
     commands:
       - "mkdir ~/.kube/"
+      - "$CODEBUILD_SRC_DIR"
       - "cp ~/config-dev.yaml ~/.kube/config"        
+
   build:
     commands:
       - cd "$CODEBUILD_SRC_DIR"
@@ -30,6 +32,7 @@ phases:
   post_build:
     commands:
       - echo "Terraform completed on `date`"
+      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME
       - kubectl apply -f kube_config.yaml
       - kubectl get svc
       - cat ~/.kube/
