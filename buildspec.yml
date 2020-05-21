@@ -20,12 +20,10 @@ phases:
   pre_build: # Add kubeconfig to access to EKS cluster
     commands:
       - "mkdir ~/.kube/"
-      - "$CODEBUILD_SRC_DIR"
-      - "cp ~/config-dev.yaml ~/.kube/config"        
-
   build:
     commands:
       - cd "$CODEBUILD_SRC_DIR"
+      - cp /config-dev.yaml ~/.kube/config    
       - terraform init
       - terraform apply -auto-approve
 
