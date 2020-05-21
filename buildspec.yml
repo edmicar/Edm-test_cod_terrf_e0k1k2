@@ -31,7 +31,7 @@ phases:
       - echo "Terraform completed on `date`"
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME
       - kubectl get svc
-      - cat ~/.kube/
+      - cat ~/.kube/config
       - echo "Execution completed on `date`"
 
 artifacts:
