@@ -5,7 +5,7 @@
 variable "cluster-name" {
   type        = string
   description = "The name of your EKS Cluster"
-  default = "dev-eks-terraform-code01"
+  default = "dev-eks-terraform"
 }
 
 
