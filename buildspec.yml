@@ -26,10 +26,10 @@ phases:
   post_build:
     commands:
       - echo "Terraform completed on `date`"
+      - kubectl apply -f kube_config.yaml
       - kubectl get svc
       - cat ~/.kube/
       - echo "Execution completed on `date`"
-
 
 artifacts:
   files:
