@@ -23,7 +23,6 @@ phases:
   build:
     commands:
       - cd "$CODEBUILD_SRC_DIR"
-      - cp /config-dev.yaml ~/.kube/config    
       - terraform init
       - terraform apply -auto-approve
 
