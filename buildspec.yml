@@ -29,8 +29,6 @@ phases:
   post_build:
     commands:
       - echo "Terraform completed on `date`"
-      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME
-      - kubectl get svc
       - ROLE="    - rolearn: arn:aws:iam::$ACCOUNT_ID:role/$ROLE_k8s\n      username: build\n      groups:\n        - system:masters"
       - kubectl get -n kube-system configmap/aws-auth -o yaml | awk "/mapRoles: \|/{print;print \"$ROLE\";next}1" > /tmp/aws-auth-patch.yml
       - kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
@@ -40,6 +38,7 @@ phases:
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws eks update-kubeconfig --name $AWS_CLUSTER_NAME
+
       - echo "Execution completed on `date`"
 
 artifacts:
