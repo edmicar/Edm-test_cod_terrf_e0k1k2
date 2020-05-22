@@ -22,6 +22,7 @@ sleep 10; \
 done; \
 #rm aws_auth_configmap.yaml kube_config.yaml;
 kubectl get svc
+ls -ls
 if [ "$completed_apply" = "0" ]; then exit 1; fi;
 EOS
 
