@@ -46,14 +46,12 @@ variable "Iam_attch_AmazonEKSClusterPolicy" {
 }
 variable "Iam_attch_AmazonEKSServicePolicy" {
   type = list(object({
-    id = string
     policy_arn = string
     role = string
   }))
 
   default = [
     {
-	id = "Role_Eksterraform-20200515110315617100000001"
 	policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
 	role = "Role_Eksterraform"
     },
