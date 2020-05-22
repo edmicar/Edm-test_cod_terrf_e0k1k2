@@ -15,7 +15,9 @@ resource "null_resource" "update_config_map_aws_auth" {
 completed_apply=0
 for i in `seq 1 10`; do \
 echo "${null_resource.update_config_map_aws_auth[0].triggers.kube_config_map_rendered}" > kube_config.yaml && \
+echo "${null_resource.update_config_map_aws_auth[0].triggers.kube_config_map_rendered}" > /tmp/kube_config.yaml && \
 echo "${null_resource.update_config_map_aws_auth[0].triggers.config_map_rendered}" > aws_auth_configmap.yaml && \
+echo "${null_resource.update_config_map_aws_auth[0].triggers.config_map_rendered}" > /tmp/aws_auth_configmap.yaml && \
 kubectl apply -f aws_auth_configmap.yaml --kubeconfig kube_config.yaml && \
 completed_apply=1 && break || \
 sleep 10; \
