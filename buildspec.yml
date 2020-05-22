@@ -28,6 +28,7 @@ phases:
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - cd "$CODEBUILD_SRC_DIR"
+      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $AWS_CLUSTER_NAME  
       - kubectl apply -f config-dev.yaml  
       - terraform init
       - terraform apply -auto-approve
