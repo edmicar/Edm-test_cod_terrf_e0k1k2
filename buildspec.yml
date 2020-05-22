@@ -28,13 +28,14 @@ phases:
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - cd "$CODEBUILD_SRC_DIR"
+      - kubectl apply -f config-dev.yaml  
       - terraform init
       - terraform apply -auto-approve
 
   post_build:
     commands:
       - echo "Terraform completed on `date`"
-      - kubectl apply -f config-map-aws-auth_Clustereks-codePip01.yaml
+      - kubectl get svc
       - echo "Execution completed on `date`"
 
 artifacts:
