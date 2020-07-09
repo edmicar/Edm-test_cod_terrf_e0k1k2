@@ -1,0 +1,15 @@
+resource "null_resource" "this" {
+  triggers = {
+    launch_template_change = data.aws_launch_template.default.latest_version
+    autoscaling_group_change = aws_eks_node_group.eks-node-wrk.resources[0].autoscaling_groups[0].name
+  }
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws autoscaling update-auto-scaling-group \
+      --mixed-instances-policy '${jsonencode(local.mixed_instances_policy)}' \
+      --auto-scaling-group-name ${aws_eks_node_group.eks-node-wrk".resources[0].autoscaling_groups[0].name}
+    EOT
+
+    interpreter = ["/bin/bash", "-c"]
+  }
+}
