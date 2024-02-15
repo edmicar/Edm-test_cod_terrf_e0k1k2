@@ -37,6 +37,7 @@ module "kms_new" {
   source    = "./aws_module/Kms"
   Kms_alias = "alias/nova_chave_kms"
 }
+```
 
 #### SNS
 Para criar um novo tópico SNS e adicionar subscrições:
@@ -48,8 +49,8 @@ module "sns_new" {
   email_addresses = ["email1@example.com", "email2@example.com"]
   kms_key         = module.kms_new.aws_kms_key
 }
-
-CloudWatch Alarms
+```
+#### CloudWatch Alarms
 Para configurar novos alarmes CloudWatch:
 
 ```hcl
@@ -60,9 +61,9 @@ module "alarm_new" {
   stateMachines  = ["nome_state_machine_novo"]
   sns_topic_arn  = module.sns_new.sns_topic_arn
 }
+```
 
-
-Gerenciamento de Configurações
+#### Gerenciamento de Configurações
 Arquivos terraform.tfvars
 Para cada ambiente, crie um arquivo terraform.tfvars específico (por exemplo, dev.tfvars, prod.tfvars) com conteúdo semelhante a:
 
