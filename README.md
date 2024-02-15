@@ -72,8 +72,10 @@ email_addresses = ["novo.email@example.com"]
 Exemplo de Configuração
 Para aplicar uma configuração em um ambiente específico, use o comando Terraform com o flag -var-file:
 
-terraform apply -var-file=dev.tfvars
 
+```shell
+terraform apply -var-file=dev.tfvars
+```
 
 #### Contribuições
 Contribuições para este projeto são bem-vindas. Para contribuir, por favor, abra uma issue ou um pull request com suas sugestões ou adições.
